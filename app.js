@@ -80,3 +80,26 @@ function getNoteTemplate(title) {
  	 </li>
   	`;
 }
+
+/*
+ * Object Theory
+ */
+
+const person = {
+  firstName: 'Vitalii',
+  lastName: 'Pilipovich',
+  year: 1987,
+  hasGirlfriend: true,
+  languages: ['ua', 'ru', 'de', 'en'],
+  getFullName: function () {
+    console.log(person.firstName + ' ' + person.lastName);
+  },
+};
+
+console.log(person.year);
+console.log(person['languages']);
+const key = 'hasGirlfriend';
+console.log(person[key]);
+person.hasGirlfriend = false;
+console.log(person[key]);
+person.getFullName();
