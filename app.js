@@ -29,9 +29,22 @@ const listElement = document.getElementById('list');
 
 // ${inputElement.value}
 
+const notes = ['Записать блог про масиви', 'Расказать теорию обектов'];
+
+function render() {
+  for (let i = 0; i < notes.length; i++) {
+    listElement.insertAdjacentHTML('beforeend', getNoteTemplate(notes[i]));
+  }
+  //   for (let note of notes) {
+  //     listElement.insertAdjacentHTML('beforeend', getNoteTemplate(note));
+  //   }
+}
+
+render();
+
 createBtn.onclick = function () {
   if (inputElement.value.length === 0) {
-    return; // функція не продовжується, а завершується
+    return; // функція не продовжується, а завершується повертається undefined
   }
   // перевірка чи не пуста строчка
   // innerHTML перепивує весь HTML
@@ -43,23 +56,27 @@ createBtn.onclick = function () {
   // 	 <span class="btn btn-small btn-danger">&times;</span>
   //   </span>
   // </li>`;
-
   // listElement.insertAdjacentHTML додоає наступний HTML
   // не затираючи попередній значенння beforeend
   listElement.insertAdjacentHTML(
     'beforeend',
-    `
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-    <span>${inputElement.value}</span>
-    <span>
-  	 <span class="btn btn-small btn-success">&check;</span>
-  	 <span class="btn btn-small btn-danger">&times;</span>
-    </span>
-  </li>
-  `
+    getNoteTemplate(inputElement.value)
   );
+  inputElement.value = ''; // при введенні значення, поле введення очищається ''
 };
 
-console.log(inputElement.value); // стандартно пусто, в HTML треба ввести value="Vitalii"
-console.log(createBtn);
-console.log(listElement);
+// console.log(inputElement.value); // стандартно пусто, в HTML треба ввести value="Vitalii"
+// console.log(createBtn);
+// console.log(listElement);
+
+function getNoteTemplate(title) {
+  return `
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+		<span>${title}</span>
+		<span>
+		<span class="btn btn-small btn-success">&check;</span>
+		<span class="btn btn-small btn-danger">&times;</span>
+		</span>
+ 	 </li>
+  	`;
+}
