@@ -25,12 +25,64 @@ const names = ['Vitalii', 'Dilya', 'Dmitriy', 'Jasmina'];
 // console.log(names.toSpliced(2, 1)); // НЕ видаляє в оригіналі
 // console.log(names);
 
-// ================ Як находити і міняти елементи
+// ================ Як находити і міняти елементи в масиві
+
 const greateWoman = 'Dilya';
 const index = names.indexOf(greateWoman);
-console.log(index); // якщо індекса немає повертає -1
+// console.log(index); // якщо індекса немає повертає -1
 const newNames = names.with(index, 'Dilya super star'); // новий метод який міняє копію
 // names[index] = 'Dilya super star';
 // console.log(names[index]);
-console.log(names);
-console.log(newNames);
+// console.log(names);
+// console.log(newNames);
+
+// ================ ЗАВЧИТИ, використовується скрізь, map завжди повертає новий масив
+// const capitalNames = names.map(function (name) {
+//   const newName = name + '!';
+//   return newName;
+//   // return undefined; // стандартно повертає undefined, якщо нічого не прописати
+// });
+// console.log(capitalNames);
+
+// const capitalNames = names.map(function (name) {
+//   return name.toUpperCase(); // Зробити кожен елемент в верхньому регістрі
+//   // name.toLowerCase
+// });
+// console.log(capitalNames);
+
+// const capitalNames = names.map(function (name, index) {
+//   if (index === 1) {
+//     return 'Dilya super star';
+//   }
+//   return name;
+// });
+// console.log(capitalNames);
+
+// Чи є такий елемент в масиві
+// console.log(names.includes('Dilya'));
+// console.log(names.indexOf('Dilya') !== -1);
+// console.log(names.indexOf('Dilya')); // номер елементу
+
+// ================ РОБОТА З ОБЕКТАМИ
+const people = [
+  { name: 'Vitalii', budget: 4200 },
+  { name: 'Dilya', budget: 15100 },
+  { name: 'Dmitriy', budget: 300 },
+  { name: 'Jasmina', budget: 7520 },
+];
+
+// знайти людину, в кого бюджет 7520, indexOf не працює
+// console.log(people.indexOf({ budget: 7520 }));
+
+// let findedPerson;
+// for (let person of people) {
+//   if (person.budget === 7520) {
+//     findedPerson = person;
+//   }
+// }
+
+const findedPerson = people.find(function (person) {
+  if (person.budget === 7520) return true;
+});
+
+console.log(findedPerson);
