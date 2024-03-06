@@ -1,6 +1,6 @@
 // Шукати теорію, ввести в google mdn pop array
 
-const names = ['Vitalii', 'Dilya', 'Dmitriy', 'Jasmina'];
+const names = ['Vitalii', 'Dilya', 'Dmitriy', 'Jasmina']
 
 // =============== МЕТОДИ
 
@@ -27,10 +27,10 @@ const names = ['Vitalii', 'Dilya', 'Dmitriy', 'Jasmina'];
 
 // ================ Як находити і міняти елементи в масиві
 
-const greateWoman = 'Dilya';
-const index = names.indexOf(greateWoman);
+const greateWoman = 'Dilya'
+const index = names.indexOf(greateWoman)
 // console.log(index); // якщо індекса немає повертає -1
-const newNames = names.with(index, 'Dilya super star'); // новий метод який міняє копію
+const newNames = names.with(index, 'Dilya super star') // новий метод який міняє копію
 // names[index] = 'Dilya super star';
 // console.log(names[index]);
 // console.log(names);
@@ -65,11 +65,13 @@ const newNames = names.with(index, 'Dilya super star'); // новий метод
 
 // ================ РОБОТА З ОБЕКТАМИ
 const people = [
-  { name: 'Vitalii', budget: 4200 },
-  { name: 'Dilya', budget: 15100 },
-  { name: 'Dmitriy', budget: 300 },
-  { name: 'Jasmina', budget: 7520 },
-];
+	{ name: 'Vitalii', budget: 4200 },
+	{ name: 'Dilya', budget: 15100 },
+	{ name: 'Dmitriy', budget: 300 },
+	{ name: 'Jasmina', budget: 7520 }
+]
+
+// Популярні методи map find findIndex filter
 
 // знайти людину, в кого бюджет 7520, indexOf не працює
 // console.log(people.indexOf({ budget: 7520 }));
@@ -81,8 +83,35 @@ const people = [
 //   }
 // }
 
-const findedPerson = people.find(function (person) {
-  if (person.budget === 7520) return true;
-});
+// const finded = people.find(function (person) { // метод find
+// 	return person.budget === 7520
+// })
 
-console.log(findedPerson);
+const finded = people.findIndex(function (person) {
+	return person.budget === 7520
+})
+
+// const finded = people.find((p) => p.budget === 7520) // стрілочна функція, дуже зручно
+
+// console.log(people.with(finded, 42)) // замінити елемент на інше значення
+
+// ============================== Фільтрування
+// наприклад більше чим сума
+// метод .filter повертає новий масив
+// часто на практиці зустрічається
+
+let sumBudget = 0
+const filtered = people.filter(function (p) {
+	return p.budget > 5000
+})
+console.log(filtered)
+
+filtered.forEach(function (p) {
+	sumBudget += p.budget // sumBudget = sumBudget + p.budget
+	// forEach перебирає масив
+})
+console.log(sumBudget)
+
+// Порахувати загальний бюджет, в кого грошей більше ніж 5000
+
+// const sumBudget
