@@ -1,18 +1,15 @@
 // Шукати теорію, ввести в google mdn pop array
 
+// =============== МЕТОДИ, вида
+// Назва масиву і те що після точки names. це метод наприклад .shift()
+
 const names = ['Vitalii', 'Dilya', 'Dmitriy', 'Jasmina']
-
-// =============== МЕТОДИ
-
-// Назва масиву і те що після точки names.
 
 // const firstName = names.shift(); // видаляє 1 елемент
 // const name = names.pop(); // видаляє останній елемент
-
 // names.push('Lola'); // покласти новий елемент в КІНЕЦЬ масиву
-
 // names.unshift('Alsu'); // покласти новий елемент в ПОЧАТОК масиву
-// ОБНРЕЖНО він не швидкий бо додає елемент і всі наступні зміщає
+// але ОБЕРЕЖНО він не швидкий бо додає елемент і всі наступні зміщає
 // console.log('Names: ', names, name);
 
 // console.log(names.reverse()); // Зробити в зворотньому порядку, міняє оригінальний масив
@@ -97,21 +94,48 @@ const finded = people.findIndex(function (person) {
 
 // ============================== Фільтрування
 // наприклад більше чим сума
-// метод .filter повертає новий масив
-// часто на практиці зустрічається
+// метод .filter повертає новий масив і часто на практиці зустрічається
 
-let sumBudget = 0
-const filtered = people.filter(function (p) {
-	return p.budget > 5000
-})
-console.log(filtered)
+// 1 варіант Задача порахувати загальний бюджет, в кого грошей більше ніж 5000
+// let sumBudget = 0
+// const filtered = people.filter(function (p) {
+// 	return p.budget > 5000
+// })
+// console.log(filtered)
 
-filtered.forEach(function (p) {
-	sumBudget += p.budget // sumBudget = sumBudget + p.budget
-	// forEach перебирає масив
-})
-console.log(sumBudget)
+// filtered.forEach(function (p) {
+// 	sumBudget += p.budget // те саме, що sumBudget = sumBudget + p.budget
+// 	// метод forEach перебирає масив
+// })
 
-// Порахувати загальний бюджет, в кого грошей більше ніж 5000
+// 2 варіант функціональне програмування
+// Метод filter - фільтрує, map - трансформує масив у щось інше
+// reduce - перше значення функція, 2 значення початкове значення а функція приймає акумулятор acc та обєкт ітерації p, => те що повертаємо
 
-// const sumBudget
+// const sumBudget = people
+// 	.filter((p) => p.budget > 5000)
+// 	.map((p) => p.budget)
+// 	.reduce((acc, p) => acc + p, 0)
+// console.log(sumBudget)
+
+// 3 варіант
+// const byBudget = (p) => p.budget > 5000
+// const pickBudget = (p) => p.budget
+// const plusBudget = (acc, p) => acc + p
+// const sumBudget = people.filter(byBudget).map(pickBudget).reduce(plusBudget, 0)
+// console.log(sumBudget)
+
+// ================= Задача по строчках, перевернути фразу задом наперед
+// Розбиремо ще пару нових методів, масиви і строчки рядки схожі
+// метод .split() строку перетворює на масив
+// те що в дужках методу це параментр, наприклад .split('') розібє на букви масив
+
+const string = 'Привіт, як у тебе справи'
+const reversed = string
+	.split('')
+	.toReversed()
+	.join('!')
+	.split('')
+	.filter((c) => c !== '!')
+	.join('')
+console.log(reversed)
